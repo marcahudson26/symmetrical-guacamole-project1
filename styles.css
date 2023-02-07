@@ -1,0 +1,133 @@
+:root {
+    --bs-link-color: black;
+    --main-color: #a17594;
+    --sec-color: #ffcfd2;
+}
+
+.btn,
+.nav-link {
+    --bs-btn-bg: #ffcfd2;
+    --bs-btn-border-color: black;
+    --bs-btn-hover-bg: #c799b9;
+    --bs-btn-active-bg: #a17594;
+    --bs-btn-color: black;
+
+    --bs-nav-link-hover-color: black;
+    --bs-nav-link-hover-bg: #ffcfd2;
+    --bs-btn-hover-border-color: #ffcfd2;
+    --bs-btn-active-border-color: #ffcfd2;
+}
+
+.jumbotron-fluid {
+    --bs-border-color: black;
+    --bs-border-width: 5px;
+}
+
+.card {
+    --bs-border-width: 0;
+    --bs-border-radius: 0;
+}
+
+body {
+    background-color: var(--main-color);
+}
+
+.container {
+    bottom: 50px;
+}
+
+.jumbotron-fluid {
+    background-image: url(./assests/meals.webp);
+    background-position: center;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.eatout-jumbo {
+    background-image: url(./assests/eatoutpic.webp);
+    background-position: center;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.eatin-jumbo {
+    background-image: url(./assests/eatinpic.webp);
+    background-position: center;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.mainImage {
+    background-color: var(--sec-color);
+    border-radius: 100%;
+    padding: 10px;
+    height: 380px;
+}
+
+.card {
+    background-color: black;
+    padding: 5px;
+    min-height: 400px;
+}
+
+.card .btn {
+    border-radius: 50%;
+}
+
+#one {
+    background-image: url(./assests/eatin.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+#two {
+    background-position: center;
+    background-image: url(./assests/eatout.webp);
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+header,
+footer {
+    background: var(--bg-color);
+}
+
+.nav {
+    justify-content: space-around;
+}
+
+.nav-link {
+    background-color: var(--sec-color);
+    border: 2px solid;
+}
+
+.dropdown {
+    z-index: 2;
+}
+
+.dropdown-menu {
+    background-color: white;
+    padding: 5px;
+}
+
+.dropdown-item {
+    background-color: var(--sec-color);
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.overlay {
+    backdrop-filter: blur(6px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
