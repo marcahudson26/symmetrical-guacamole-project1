@@ -37,7 +37,7 @@ body {
 }
 
 .jumbotron-fluid {
-    background-image: url(./assests/meals.webp);
+    background-image: url(./assets/meals.webp);
     background-position: center;
     height: 600px;
     background-repeat: no-repeat;
@@ -45,7 +45,7 @@ body {
 }
 
 .eatout-jumbo {
-    background-image: url(./assests/eatoutpic.webp);
+    background-image: url(./assets/eatoutpic.webp);
     background-position: center;
     height: 250px;
     background-repeat: no-repeat;
@@ -53,7 +53,7 @@ body {
 }
 
 .eatin-jumbo {
-    background-image: url(./assests/eatinpic.webp);
+    background-image: url(./assets/eatinpic.webp);
     background-position: center;
     height: 250px;
     background-repeat: no-repeat;
@@ -78,7 +78,7 @@ body {
 }
 
 #one {
-    background-image: url(./assests/eatin.webp);
+    background-image: url(./assets/eatin.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover
@@ -86,7 +86,7 @@ body {
 
 #two {
     background-position: center;
-    background-image: url(./assests/eatout.webp);
+    background-image: url(./assets/eatout.webp);
     background-repeat: no-repeat;
     background-size: cover
 }
@@ -130,4 +130,10 @@ footer {
     left: 0;
     right: 0;
     z-index: 1;
+}
+
+h2 {
+    margin: 0px;
+    background-color: pink;
+    text-align: center;
 }
