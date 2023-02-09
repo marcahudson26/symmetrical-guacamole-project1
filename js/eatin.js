@@ -35,7 +35,7 @@ function getHistory() {
 function renderHistory() {
     document.querySelector(".history-container").innerHTML = ` 
         ${getHistory().map(history => `
-                <button class="btn" onclick="getSpecificMeal(this)" data-id="${history.id}">${history.mealName}</button>
+                <button class="btn btn-hist" onclick="getSpecificMeal(this)" data-id="${history.id}">${history.mealName}</button>
             `).join("")
         }
     `;

@@ -33,6 +33,45 @@ function getCache() {
 }
 
 
+function getSpecificPlace(e) {
+    const { id } = e.dataset;
+
+    const width = 400;
+    const height = 300;
+
+    const place = getCache().find(history => history.properties.place_id === id).properties
+    const lon = place.lon
+    const lat = place.lat
+
+    let website = "";
+    if (place.datasource.raw.website) {
+        website = `<p><a target="_blank" href="${place.datasource.raw.website}">Website</a></p>`
+    }
+
+    let openingHours = ""
+    if (place.datasource.raw.opening_hours) {
+        openingHours = `<p> Opening hours ${place.datasource.raw.opening_hours}</p>`
+    }
+
+    let phone = "";
+    if (place.datasource.raw.phone) {
+        phone = `<p>Contact Number: <a href="tel:${place.datasource.raw.phone}">${place.datasource.raw.phone}</a></p>`
+    }
+    document.getElementById("selected-restaurant").innerHTML = `
+    <div class= "mapCard">
+        <h1>${place.name}</h1>
+        ${website}
+        <p>${place.formatted}</p>
+        <a href=https://www.google.com/maps/>Get directions</a>
+       
+        
+        ${openingHours}
+        ${phone}
+<img width="${width}" height="${height}" class="map-image" src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=${width}&height=${height}&center=lonlat:${lon},${lat}&zoom=13&marker=lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome|lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome&apiKey=${apiKey}"></img>
+    </div >
+    `
+}
+// ${place.formatted}
 // {
 //     "name": "Brocco On The Park",
 //     "country": "United Kingdom",
@@ -86,45 +125,6 @@ function getCache() {
 //             "opening_hours": "Mo-Sa 08:30-22:00; Su 08:30-18:00",
 //             "addr:housenumber": 92
 //         }
-//     },
-//     "place_id": "517497ee98dd08f8bf59e029fe6420af4a40f00102f901b57dee050000000092031242726f63636f204f6e20546865205061726b"
-// }
-
-function getSpecificPlace(e) {
-    const { id } = e.dataset;
-
-    const width = 400;
-    const height = 300;
-
-    const place = getCache().find(history => history.properties.place_id === id).properties
-    const lon = place.lon
-    const lat = place.lat
-
-    let website = "";
-    if (place.datasource.raw.website) {
-        website = `<p><a target="_blank" href="${place.datasource.raw.website}">Website</a></p>`
-    }
-
-    let openingHours = ""
-    if (place.datasource.raw.opening_hours) {
-        openingHours = `<p> Opening hours ${place.datasource.raw.opening_hours}</p>`
-    }
-
-    let phone = "";
-    if (place.datasource.raw.phone) {
-        phone = `<p>Contact Number: <a href="tel:${place.datasource.raw.phone}">${place.datasource.raw.phone}</a></p>`
-    }
-
-    document.getElementById("selected-restaurant").innerHTML = `
-        <h1>${place.name}</h1>
-        ${website}
-        <p> ${place.address_line2}</p>
-        ${openingHours}
-        ${phone}
-        <img width="${width}" height="${height}" class="map-image" src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=${width}&height=${height}&center=lonlat:${lon},${lat}&zoom=13&marker=lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome|lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome&apiKey=${apiKey}"></img>
-    `
-}
-
 // https://maps.geoapify.com/v1/staticmap?style=osm-bright-smooth&width=600&height=400&center=lonlat%3A-122.29009844646316%2C47.54607447032754&zoom=14.3497&marker=lonlat%3A-122.29188334609739%2C47.54403990655936%3Btype%3Aawesome%3Bcolor%3A%23bb3f73%3Bsize%3Ax-large%3Bicon%3Apaw%7Clonlat%3A-122.29282631194182%2C47.549609195001494%3Btype%3Amaterial%3Bcolor%3A%234c905a%3Bicon%3Atree%3Bicontype%3Aawesome%7Clonlat%3A-122.28726954893025%2C47.541766557545884%3Btype%3Amaterial%3Bcolor%3A%234c905a%3Bicon%3Atree%3Bicontype%3Aawesome&apiKey=85ab5ccbe5924069b86a34a443887846
 
 button.addEventListener("click", e => {
@@ -139,7 +139,7 @@ button.addEventListener("click", e => {
 
             document.getElementById("input-locations").innerHTML = `
                 ${places.map(place => `<button class="btn" data-id="${place.properties.place_id}" onclick="getSpecificPlace(this)">${place.properties.name}</button>`).join("")}
-            `
+`
 
             setLoading(false)
         })

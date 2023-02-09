@@ -235,3 +235,34 @@ h2 {
 .card-body {
     padding-top: 20px;
 }
+
+.btn-hist {
+    margin: 10px
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 35px;
+}
+
+#selected-restaurant {
+    text-align: center;
+}
+
+.mapCard {
+    border: solid;
+    border-radius: 20px;
+    padding: 30px;
+    background: white;
+}
+
+.map-image {
+    border: solid;
+}
