@@ -112,7 +112,7 @@ function getSpecificPlace(e) {
 
     let phone = "";
     if (place.datasource.raw.phone) {
-        website = `<p>Contact Number: <a href="tel:${place.datasource.raw.phone}">${place.datasource.raw.phone}</a></p>`
+        phone = `<p>Contact Number: <a href="tel:${place.datasource.raw.phone}">${place.datasource.raw.phone}</a></p>`
     }
 
     document.getElementById("selected-restaurant").innerHTML = `
