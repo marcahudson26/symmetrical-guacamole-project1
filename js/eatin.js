@@ -35,7 +35,7 @@ function getHistory() {
 function renderHistory() {
     document.querySelector(".history-container").innerHTML = ` 
         ${getHistory().map(history => `
-                <button onclick="getSpecificMeal(this)" data-id="${history.id}">${history.mealName}</button>
+                <button class="btn" onclick="getSpecificMeal(this)" data-id="${history.id}">${history.mealName}</button>
             `).join("")
         }
     `;
@@ -54,7 +54,8 @@ function renderMeal(data) {
                 <ul>
                     ${data.ingredents.map(i => `<li>${i}</li>`).join("")}
                 </ul>
-
+                
+                <div class="btn-container">
                 <button
                     type="button"
                     class="btn btn-primary"
@@ -72,6 +73,7 @@ function renderMeal(data) {
                 >
                     Cooking Instructions
                 </button>
+                </div>
         
                 <div class="modal fade dialog-video" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-lg">

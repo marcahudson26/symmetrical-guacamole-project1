@@ -23,7 +23,6 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <div class="d-flex flex-column gap-1">
-                            <a class="dropdown-item" href="./eat-in.html">EAT IN</a>
                             <a class="dropdown-item" href="./eat-out.html">EAT OUT</a>
                             <a class="dropdown-item" href="./index.html">MAIN PAGE</a>
                             <a class="dropdown-item"
@@ -39,11 +38,32 @@
 
     </div>
     <nav class=" navbar eatin-select ">
-        <input class="btn " type="submit" id="random-meal" value="generate a random meal">
-    </nav>
-    <div class="history-container"></div>
-    <div class="meal-container"></div>
+        <div>
+            <div>
+                <input class="btn" type="submit" id="random-meal" value="generate a random meal">
 
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Select a Meal</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="display-container">
+
+        <div class="history">
+            <h3>Meal history</h3>
+            <div class="history-container">
+            </div>
+        </div>
+        <div>
+            <div class="meal-container"></div>
+        </div>
+
+    </section>
 
     <footer class="mb-3">
         <ul class="nav">

@@ -138,7 +138,7 @@ button.addEventListener("click", e => {
             saveCache(places);
 
             document.getElementById("input-locations").innerHTML = `
-                ${places.map(place => `<button data-id="${place.properties.place_id}" onclick="getSpecificPlace(this)">${place.properties.name}</button>`).join("")}
+                ${places.map(place => `<button class="btn" data-id="${place.properties.place_id}" onclick="getSpecificPlace(this)">${place.properties.name}</button>`).join("")}
             `
 
             setLoading(false)
