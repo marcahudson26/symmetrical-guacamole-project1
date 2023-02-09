@@ -16,7 +16,16 @@
     --bs-nav-link-hover-bg: #ffcfd2;
     --bs-btn-hover-border-color: #ffcfd2;
     --bs-btn-active-border-color: #ffcfd2;
+
+    --bs-btn-disabled-bg: #b4a5b0;
+    --bs-btn-disabled-border-color: #c9aaac;
     display: block;
+}
+
+.map-image {
+    background-image: url("https://eshop.kapatex.com/templates/kapatex//webdata/images/loading/loading_grey.gif");
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .jumbotron-fluid {

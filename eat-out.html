@@ -23,7 +23,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <div class="d-flex flex-column gap-1">
-                            <a class="dropdown-item" href="./eatIn.html">EAT IN</a>
+                            <a class="dropdown-item" href="./eat-in.html">EAT IN</a>
                             <a class="dropdown-item" href="./eat-out.html">EAT OUT</a>
                             <a class="dropdown-item" href="./index.html">MAIN PAGE</a>
                             <a class="dropdown-item"
@@ -37,10 +37,25 @@
     <h2>You have chosen to eat out.</h2>
     <div class="jumbotron eatout-jumbo jumbotron-fluid border-bottom border-top">
 
-
     </div>
+    <div class="container">
+        <form class="form-inline">
+            <div class="form-group">
+                <input class="form-control" id="location" placeholder="Search your address or postcode">
+            </div>
+            <button id="buttonSearch" type="submit" class="btn btn-primary mb-2 disabled">
+                <span class="spinner-border spinner-border-sm loading d-none" role="status" aria-hidden="true"></span>
+                Find me some grub
+            </button>
+        </form>
+    </div>
+    <div>
+        <section id="input-locations">
 
+        </section>
 
+        <section id="selected-restaurant">
+        </section>
     </div>
     <footer class="mb-3">
         <ul class="nav">
@@ -68,7 +83,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="./js/eatout.js"></script>
-
 
 </body>
 
