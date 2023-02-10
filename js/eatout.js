@@ -68,7 +68,7 @@ function getSpecificPlace(e) {
         
         ${openingHours}
         ${phone}
-<img width="${width}"  class="map-image" src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=${width}&height=${height}&center=lonlat:${lon},${lat}&zoom=13&marker=lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome|lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome&apiKey=${apiKey}"></img>
+<img width="${width}" class="map-image" src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=${width}&height=${height}&center=lonlat:${lon},${lat}&zoom=13&marker=lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome|lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome&apiKey=${apiKey}"></img>
     </div >
     `
 }
