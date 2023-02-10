@@ -43,13 +43,19 @@ function getHistory() {
 }
 
 function renderHistory() {
+    const history = getHistory();
+    let title = "";
+    if (history.length) {
+        title = "<h3>Meals you looked at before</h3>"
+    }
+
     document.querySelector(".history-container").innerHTML = `
-        <h3>Meals you looked at before</h3>
-        ${getHistory().map(history => `
-                <button class="btn mb-2 text-white bg-dark search-button" onclick="getSpecificMeal(this)" data-id="${history.id}">
-                  <span class="material-icons text-primary">restaurant</span> ${history.mealName}
-                </button>
-            `).join("")
+        ${title}
+        ${history.map(history => `
+            <button class="btn mb-2 text-white bg-dark search-button" onclick="getSpecificMeal(this)" data-id="${history.id}">
+                <span class="material-icons text-primary">restaurant</span> ${history.mealName}
+            </button>
+        `).join("")
         }
     `;
 }
@@ -61,54 +67,54 @@ function renderMeal(data) {
 
     document.querySelector(".meal-container").innerHTML = ` 
         <div class="meal-eatin">
-            <h5 class="card-title">${data.mealName}</h5>
-            <img class="card-img-top" src="${data.image}" alt="Card image cap">
-            <div class="card-body">
-                <ul>
-                    ${data.ingredents.map(i => `<li>${i}</li>`).join("")}
-                </ul>
-                
-                <div class="btn-container">
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    data-toggle="modal"
-                    data-target=".dialog-video"
-                >
-                    Video
-                </button>
-        
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    data-toggle="modal"
-                    data-target=".dialog-cooking-instructions"
-                >
-                    Cooking Instructions
-                </button>
+            <h2 class="card-title p-0 m-0 mb-4">${data.mealName}</h2>
+            <div class="d-flex flex-column flex-sm-row gap-4 align-items-start">
+                <img class="card-img-top" src="${data.image}" alt="Card image cap">
+                <div class="card-body w-100">
+                    <div class="btn-container mb-4 gap-2">
+                    <button
+                        type="button"
+                        class="btn text-white bg-dark d-block w-100"
+                        data-toggle="modal"
+                        data-target=".dialog-cooking-instructions"
+                    >
+                        Get cooking
+                    </button>
+                    <button
+                        type="button"
+                        class="btn text-dark search-button d-block w-100 link"
+                        data-toggle="modal"
+                        data-target=".dialog-video"
+                    >
+                        Watch it being made
+                    </button>
+            
+                    </div>
+                    <ul>
+                        ${data.ingredents.map(i => `<li>${i}</li>`).join("")}
+                    </ul>
                 </div>
-        
-                <div class="modal fade dialog-video" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <h3>Video</h3>
-                            <div class="video-container">
-                                <iframe width="640" height="385" src="${data.vidioLink?.replace("/watch?v=", "/embed/")}?autoplay=1&mute=1"></iframe>
-                            </div>
-                        </div>
+            </div>
+        </div>
+        <div class="modal fade dialog-video" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <h3>Video</h3>
+                    <div class="video-container">
+                        <iframe width="640" height="385" src="${data.vidioLink?.replace("/watch?v=", "/embed/")}?autoplay=1&mute=1"></iframe>
                     </div>
                 </div>
-                <div class="modal fade dialog-cooking-instructions" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <h3>Cooking instructions</h3>
-                            <ol>
-                                ${cookingInstructions.map(step => `
-                                    <li>${step}</li>
-                                `).join("")}
-                            </ol>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="modal fade dialog-cooking-instructions" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content p-4">
+                    <h3>Cooking instructions</h3>
+                    <ol>
+                        ${cookingInstructions.map(step => `
+                            <li>${step}</li>
+                        `).join("")}
+                    </ol>
                 </div>
             </div>
         </div>

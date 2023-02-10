@@ -20,9 +20,9 @@
 </head>
 
 <body class="p-3">
-    <header class="d-flex container-fluid align-items-start p-3 p-sm-3">
+    <header class="d-flex flex-column-reverse flex-sm-row container-fluid align-items-start p-3 p-sm-3">
         <div>
-            <img class="logo pb-3" src="./assets/yum.webp" alt="">
+            <a href="./"><img class="logo pb-3" src="./assets/yum.webp" alt=""></a>
             <h1 class="sub">Staying in</h1>
         </div>
         <nav>
@@ -35,7 +35,6 @@
     <main class="snug">
         <div class="input-group justify-content-end mb-3">
             <div class="input-group search">
-
                 <input class="form-control search py-2" type="search" id="search-input"
                     placeholder="What you fancy? Eg: toad in the hole" aria-labelledby="form-heading"
                     aria-controls="today forecast" />
@@ -45,15 +44,12 @@
                         Ooooh yeah!
                     </button>
                 </div>
-
             </div>
             <input class="btn" type="button" id="random-meal" value="Or, let us surprise you  ">
         </div>
         <section class="display-container">
 
-            <div>
-                <div class="meal-container"></div>
-            </div>
+            <div class="meal-container mb-4"></div>
             <div class="history">
                 <div class="history-container">
                 </div>
