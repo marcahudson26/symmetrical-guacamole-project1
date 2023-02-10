@@ -1,11 +1,21 @@
 const randomButton = document.getElementById("random-meal");
-
-
+const searchInput = document.getElementById("search-input");
+const inputButton = document.getElementById("search-button");
 
 randomButton.addEventListener("click", function () {
     generateCardRandom()
     generateCardSelected()
 });
+
+inputButton.addEventListener("click", (event) => {
+    event.preventDefault()
+    const userInput = document.querySelector('#search-input').value;
+    getSelectedMeal(userInput).then((data) => {
+        saveHistory(data)
+        renderMeal(data)
+    })
+})
+
 
 renderHistory();
 
@@ -33,9 +43,12 @@ function getHistory() {
 }
 
 function renderHistory() {
-    document.querySelector(".history-container").innerHTML = ` 
+    document.querySelector(".history-container").innerHTML = `
+        <h3>Meals you looked at before</h3>
         ${getHistory().map(history => `
-                <button class="btn btn-hist" onclick="getSpecificMeal(this)" data-id="${history.id}">${history.mealName}</button>
+                <button class="btn mb-2 text-white bg-dark search-button" onclick="getSpecificMeal(this)" data-id="${history.id}">
+                  <span class="material-icons text-primary">restaurant</span> ${history.mealName}
+                </button>
             `).join("")
         }
     `;
@@ -181,6 +194,19 @@ function getMealById(id) {
             console.log("There was an error")
         })
 }
+function getSelectedMeal(userInput) {
+    // this gets the ingredients
+
+    return fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${userInput}`)
+        .then(response => response.json())
+        .then(toMealObj)
+
+        .catch(() => {
+            // if there is an error render some error message
+            console.log("There was an error")
+        })
+
+}
 
 function getRandomMeal() {
     return fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
@@ -194,204 +220,5 @@ function getRandomMeal() {
 
 
 
-///////////////////////////////////////////////////////////////////////////////////
 
 
-
-// function generateCardSelected() {
-//     getRandomMeal().then(
-//         data => {
-//             saveHistory({
-//                 id: data.id,
-//                 mealName: data.mealName
-//             })
-//             getSelectedMeal(data)
-//         }
-//     )
-// }
-
-// function getSelectedMeal() {
-//     userInput = "Eton Mess"
-//     // this gets the ingredients
-//     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${userInput}`)
-//         .then(response => response.json())
-//         .then(toSelectMealOjt)
-//         .catch(() => {
-//             // if there is an error render some error message
-//             console.log("There was an error")
-//         })
-
-// }
-
-// function toSelectMealOjt() {
-//     // this gets the ingredients
-//     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${userInput}`)
-//         .then(response => response.json())
-//         .then(response => {
-
-//             if (!response.meals) {
-//                 // if there is no data throw an error
-//                 throw "No Data";
-//             }
-//             const meal = response.meals[0]
-//             const ingredients = []
-//             const measurements = []
-
-//             for (const key in meal) {
-//                 //because the api response doesn't  contain an array of ingredients we loop thought the keys to create an array
-//                 if (key.startsWith("strIngredient")) {
-//                     if (meal[key] !== "") {
-//                         ingredients.push(meal[key].trim())
-//                     }
-//                 }
-//                 if (key.startsWith("strMeasure")) {
-//                     if (meal[key] !== "") {
-//                         measurements.push(meal[key].trim())
-//                     }
-//                 }
-//             }
-//             const recipeIngredents = []
-//             for (let i = 0; i < ingredients.length; i++) {
-//                 const ingredent = ingredients[i];
-//                 const measurement = measurements[i]
-//                 recipeIngredents.push(`${measurement} ${ingredent}`)
-//             }
-//             //for the meal name
-//             const sMealName = response.meals[0].strMeal
-//             //this gets the ingredents
-//             const sIngredents = recipeIngredents
-//             //cooking instructions
-//             const sCookingInstructions = response.meals[0].strInstructions
-//             //for the the thumbnail image
-//             const sImage = response.meals[0].strMealThumb
-//             // for the u tube video link
-//             const sVidioLink = response.meals[0].strYoutube
-//             return {
-//                 id: meal.idMeal,
-//                 sMealName,
-//                 sIngredents,
-//                 sCookingInstructions,
-//                 sImage,
-//                 sVidioLink,
-//             }
-//         })
-
-// }
-
-// function getSelectedMeal(data) {
-//     renderHistory()
-//     document.querySelector(".meal-container").innerHTML = ` 
-//         <div class="meal-eatin">
-//             <h5 class="card-title">${data.sMealName}</h5>
-//             <img class="card-img-top" src="${data.sImage}" alt="Card image cap">
-//             <div class="card-body">
-//                 <ul>
-//                     ${data.ingredents.map(i => `<li>${i}</li>`).join("")}
-//                 </ul>
-
-//                 <button
-//                     type="button"
-//                     class="btn btn-primary"
-//                     data-toggle="modal"
-//                     data-target=".dialog-video"
-//                 >
-//                     Video
-//                 </button>
-        
-//                 <button
-//                     type="button"
-//                     class="btn btn-primary"
-//                     data-toggle="modal"
-//                     data-target=".dialog-cooking-instructions"
-//                 >
-//                     Cooking Instructions
-//                 </button>
-        
-//                 <div class="modal fade dialog-video" tabindex="-1" role="dialog" aria-hidden="true">
-//                     <div class="modal-dialog modal-lg">
-//                         <div class="modal-content">
-//                             <h3>Video</h3>
-//                             <div class="video-container">
-//                                 <iframe width="640" height="385" src="${data.sVidioLink?.replace("/watch?v=", "/embed/")}?autoplay=1&mute=1"></iframe>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <div class="modal fade dialog-cooking-instructions" tabindex="-1" role="dialog" aria-hidden="true">
-//                     <div class="modal-dialog modal-lg">
-//                         <div class="modal-content">
-//                             <h3>Cooking instructions</h3>
-//                             <p>${data.sCookingInstructions}</p>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     `
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let userInput =
-
-// // this gets the ingredients
-// fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${userInput}`)
-//     .then(response => response.json())
-//     .then(response => {
-
-//         if (!response.meals) {
-//             // if there is no data throw an error
-//             throw "No Data";
-//         }
-//         const meal = response.meals[0]
-//         const ingredients = []
-//         const measurements = []
-
-//         for (const key in meal) {
-//             //because the api response doesn't  contain an array of ingredients we loop thought the keys to create an array
-//             if (key.startsWith("strIngredient")) {
-//                 if (meal[key] !== "") {
-//                     ingredients.push(meal[key].trim())
-//                 }
-//             }
-//             if (key.startsWith("strMeasure")) {
-//                 if (meal[key] !== "") {
-//                     measurements.push(meal[key].trim())
-//                 }
-//             }
-//         }
-//         const recipeIngredents = []
-//         for (let i = 0; i < ingredients.length; i++) {
-//             const ingredent = ingredients[i];
-//             const measurement = measurements[i]
-//             recipeIngredents.push(`${measurement} ${ingredent}`)
-//         }
-//         //for the meal name
-//         console.log(response.meals[0].strMeal)
-//         //this gets the ingredents
-//         console.log(recipeIngredents)
-//         //cooking instructions
-//         console.log(response.meals[0].strInstructions)
-//         //for the the thumbnail image
-//         console.log(response.meals[0].strMealThumb)
-//         // for the u tube video link
-//         console.log(response.meals[0].strYoutube)
-
-//         return
-//     })
-
-//     .catch(() => {
-//         alert("no meal")
-//     })

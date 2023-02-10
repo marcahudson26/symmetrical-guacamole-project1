@@ -36,8 +36,8 @@ function getCache() {
 function getSpecificPlace(e) {
     const { id } = e.dataset;
 
-    const width = 400;
-    const height = 300;
+    const width = 600;
+    const height = 500;
 
     const place = getCache().find(history => history.properties.place_id === id).properties
     const lon = place.lon
@@ -57,12 +57,13 @@ function getSpecificPlace(e) {
     if (place.datasource.raw.phone) {
         phone = `<p>Contact Number: <a href="tel:${place.datasource.raw.phone}">${place.datasource.raw.phone}</a></p>`
     }
+    let post = place.postcode
     document.getElementById("selected-restaurant").innerHTML = `
     <div class= "mapCard">
         <h1>${place.name}</h1>
         ${website}
         <p>${place.formatted}</p>
-        <a href=https://www.google.com/maps/>Get directions</a>
+        <a target="blank" class="d-block" href="http://maps.google.com/?q=${place.address_line2}/">Get directions</a>
        
         
         ${openingHours}
@@ -71,6 +72,8 @@ function getSpecificPlace(e) {
     </div >
     `
 }
+
+
 // ${place.formatted}
 // {
 //     "name": "Brocco On The Park",
@@ -138,8 +141,12 @@ button.addEventListener("click", e => {
             saveCache(places);
 
             document.getElementById("input-locations").innerHTML = `
-                ${places.map(place => `<button class="btn" data-id="${place.properties.place_id}" onclick="getSpecificPlace(this)">${place.properties.name}</button>`).join("")}
-`
+                ${places.map(place => `
+                    <button type="button" class="btn mb-2 text-white bg-dark search-button d-block w-100" data-id="${place.properties.place_id}" onclick="getSpecificPlace(this)">
+                        <span class="material-icons text-primary">location_on</span> ${place.properties.name}
+                    </button>
+                `).join("")}
+            `
 
             setLoading(false)
         })
